@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties url="mybatis_generator_config.properties" />
+
+	<classPathEntry location="${classPath.oracle}" />
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.OraclePaginationPlugin" />
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${datasource.driverClass}"
+			connectionURL="${datasource.url}" userId="${datasource.username}"
+			password="${datasource.password}">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+
+		<javaModelGenerator targetPackage="${targetPackage}.entity"
+			targetProject="${targetProject}">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${targetPackage}.sqlmap"
+			targetProject="${targetProject}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="${targetPackage}.dao" implementationPackage="${targetPackage}.dao.impl"
+			targetProject="${targetProject}">
+			<property name="enableSubPackages" value="false" />
+			<property name="exampleMethodVisibility" value="public" />
+			<property name="methodNameCalculator" value="extended" />
+		</javaClientGenerator>
+
+		<!-- 配置表信息 -->
+		<table schema="" tableName="T_USER" domainObjectName="UserEntity" />
+		<table schema="" tableName="T_BOARD" domainObjectName="BoardEntity" />
+		<table schema="" tableName="T_TOPIC" domainObjectName="TopicEntity" />
+		<table schema="" tableName="T_POST" domainObjectName="PostEntity" />
+		<table schema="" tableName="T_LOGIN_LOG" domainObjectName="LoginLogEntity" />
+		<table schema="" tableName="T_BOARD_MANAGER" domainObjectName="BoardManagerEntity" />
+	</context>
+</generatorConfiguration>
