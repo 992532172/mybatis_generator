@@ -5,7 +5,7 @@
 	<properties resource="mybatis_generator_config.properties" />
 
 	<!-- 指定数据连接驱动jar地址 -->
-	<classPathEntry location="${datasource.classpath}" />
+	<classPathEntry location="${classPath.mysql}" />
 
 	<!-- 一个数据库一个context -->
 	<context id="dbtable">
@@ -19,7 +19,7 @@
 		</commentGenerator>
 
 		<!-- jdbc连接 -->
-		<jdbcConnection driverClass="${datasource.driverClassName}"
+		<jdbcConnection driverClass="${datasource.driverClass}"
 			connectionURL="${datasource.url}" userId="${datasource.username}"
 			password="${datasource.password}" />
 
@@ -30,8 +30,8 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="${targetpackage}.entity"
-			targetProject="${project}">
+		<javaModelGenerator targetPackage="${targetPackage}.entity"
+			targetProject="${targetProject}">
 			<!-- 是否在当前路径下新加一层schema -->
 			<property name="enableSubPackages" value="false" />
 			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
@@ -41,15 +41,15 @@
 		</javaModelGenerator>
 
 		<!-- 生成mapxml文件 -->
-		<sqlMapGenerator targetPackage="${targetpackage}.sqlmap"
-			targetProject="${project}">
+		<sqlMapGenerator targetPackage="${targetPackage}.sqlmap"
+			targetProject="${targetProject}">
 			<!-- 是否在当前路径下新加一层schema -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="${targetpackage}.dao"
-			targetProject="${project}" type="XMLMAPPER">
+		<javaClientGenerator targetPackage="${targetPackage}.dao"
+			targetProject="${targetProject}" type="XMLMAPPER">
 			<!-- 是否在当前路径下新加一层schema -->
 			<property name="enableSubPackages" value="false" />
 			<property name="exampleMethodVisibility" value="public" />
@@ -62,7 +62,6 @@
 		<table schema="" tableName="t_topic" domainObjectName="TopicEntity" />
 		<table schema="" tableName="t_post" domainObjectName="PostEntity" />
 		<table schema="" tableName="t_login_log" domainObjectName="LoginLogEntity" />
-		<table schema="" tableName="t_board_manager" domainObjectName="BoardManagerEntity" />
 
 	</context>
 </generatorConfiguration>
